@@ -1,57 +1,76 @@
+
+.tabs {
+  padding: 24px 0;
+}
+
 .tabs .tabs-list {
   display: flex;
-  gap: 0.5ch;
-  max-width: 100%;
-  font-size: var(--body-font-size-xs);
-  overflow-x: auto;
-}
-
-@media (width >= 600px) {
-  .tabs .tabs-list {
-    font-size: var(--body-font-size-s);
-  }
-}
-
-@media (width >= 900px) {
-  .tabs .tabs-list {
-    font-size: var(--body-font-size-m);
-  }
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 24px;
+  padding: 0 0 12px;
+  border-bottom: 2px solid var(--border-color);
+  list-style: none;
 }
 
 .tabs .tabs-list button {
-  flex: 0 0 max-content;
-  margin: 0;
-  border: 1px solid var(--dark-color);
-  border-radius: 0;
-  padding: 0.5em;
-  background-color: #949494;
-  color: initial;
-  font-weight: bold;
-  line-height: unset;
-  text-align: initial;
-  text-overflow: unset;
-  overflow: unset;
-  white-space: unset;
-  transition: background-color 0.2s;
+  border: 1px solid var(--border-color);
+  border-radius: var(--button-radius);
+  padding: 12px 20px;
+  background-color: #fff;
+  color: var(--dark-color);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.tabs .tabs-list button p {
-  margin: 0;
+.tabs .tabs-list button:hover {
+  background-color: var(--secondary-color);
 }
 
 .tabs .tabs-list button[aria-selected='true'] {
-  border-bottom: 1px solid var(--background-color);
-  background-color: var(--background-color);
-  cursor: initial;
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.tabs .tabs-list button:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 3px;
 }
 
 .tabs .tabs-panel {
-  margin-top: -1px;
   padding: 24px;
-  border: 1px solid var(--dark-color);
-  overflow: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--card-background);
+  box-shadow: var(--card-shadow);
 }
 
-.tabs .tabs-panel[aria-hidden='true'] {
-  display: none;
+.tabs .tabs-panel h2,
+.tabs .tabs-panel h3,
+.tabs .tabs-panel h4 {
+  margin-top: 0;
+  color: var(--dark-color);
+}
+
+.tabs .tabs-panel p {
+  color: var(--muted-color);
+  line-height: 1.7;
+}
+
+@media (width <= 600px) {
+  .tabs .tabs-list {
+    gap: 8px;
+  }
+
+  .tabs .tabs-list button {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .tabs .tabs-panel {
+    padding: 18px;
+  }
 }

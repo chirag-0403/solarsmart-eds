@@ -1,90 +1,63 @@
+
 .faq {
-  padding: 32px 0;
+  padding: 24px 0;
 }
 
 .faq details {
-  margin-bottom: 12px;
-  border: 1px solid #dce5df;
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 4%);
+  margin: 0 0 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--card-background);
+  box-shadow: var(--card-shadow);
   overflow: hidden;
+  transition: box-shadow 0.2s ease;
 }
 
-.faq details summary {
+.faq details:hover {
+  box-shadow: 0 6px 20px rgb(18 61 44 / 10%);
+}
+
+.faq summary {
   position: relative;
-  display: block;
-  padding: 20px 56px 20px 22px;
-  color: #176b3a;
-  font-size: 17px;
+  padding: 20px 52px 20px 24px;
+  color: var(--dark-color);
   font-weight: 600;
-  line-height: 1.5;
   cursor: pointer;
   list-style: none;
-  transition: background-color 0.2s ease;
 }
 
-.faq details summary::-webkit-details-marker {
+.faq summary::-webkit-details-marker {
   display: none;
 }
 
-.faq details summary::after {
-  content: '';
+.faq summary::after {
   position: absolute;
   top: 50%;
   right: 24px;
   width: 9px;
   height: 9px;
-  border: solid #16834a;
-  border-width: 0 2px 2px 0;
+  border-right: 2px solid var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  content: '';
   transform: translateY(-70%) rotate(45deg);
   transition: transform 0.2s ease;
 }
 
-.faq details[open] summary {
-  background-color: #f0f7f2;
-}
-
 .faq details[open] summary::after {
-  transform: translateY(-30%) rotate(225deg);
+  transform: translateY(-25%) rotate(225deg);
 }
 
-.faq details summary:hover {
-  background-color: #f0f7f2;
-}
-
-.faq details summary:focus-visible {
-  outline: 2px solid #16834a;
+.faq summary:focus-visible {
+  outline: 3px solid var(--primary-color);
   outline-offset: -3px;
 }
 
-.faq .faq-item-body {
-  padding: 20px 22px;
-  border-top: 1px solid #e2ebe5;
-  background-color: #fff;
-  color: #444;
+.faq details > div {
+  padding: 0 24px 20px;
+  color: var(--muted-color);
   line-height: 1.7;
 }
 
-.faq .faq-item-body p {
-  margin: 0 0 12px;
-}
-
-.faq .faq-item-body p:last-child {
+.faq details > div p:last-child {
   margin-bottom: 0;
-}
-
-@media (width <= 600px) {
-  .faq details summary {
-    padding: 17px 48px 17px 16px;
-    font-size: 16px;
-  }
-
-  .faq details summary::after {
-    right: 20px;
-  }
-
-  .faq .faq-item-body {
-    padding: 16px;
-  }
 }
