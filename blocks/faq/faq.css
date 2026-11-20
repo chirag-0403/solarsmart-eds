@@ -1,20 +1,19 @@
-.accordion {
+.faq {
   padding: 32px 0;
 }
 
-.accordion details {
-  overflow: hidden;
-  margin-bottom: 16px;
+.faq details {
+  margin-bottom: 12px;
   border: 1px solid #dce5df;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0 2px 8px rgb(0 0 0 / 4%);
+  overflow: hidden;
 }
 
-.accordion details summary {
+.faq details summary {
   position: relative;
   display: block;
-  min-height: 64px;
   padding: 20px 56px 20px 22px;
   color: #176b3a;
   font-size: 17px;
@@ -25,11 +24,12 @@
   transition: background-color 0.2s ease;
 }
 
-.accordion details summary::-webkit-details-marker {
+.faq details summary::-webkit-details-marker {
   display: none;
 }
 
-.accordion details summary::after {
+.faq details summary::after {
+  content: '';
   position: absolute;
   top: 50%;
   right: 24px;
@@ -37,29 +37,28 @@
   height: 9px;
   border: solid #16834a;
   border-width: 0 2px 2px 0;
-  content: '';
   transform: translateY(-70%) rotate(45deg);
   transition: transform 0.2s ease;
 }
 
-.accordion details[open] summary {
+.faq details[open] summary {
   background-color: #f0f7f2;
 }
 
-.accordion details[open] summary::after {
+.faq details[open] summary::after {
   transform: translateY(-30%) rotate(225deg);
 }
 
-.accordion details summary:hover {
+.faq details summary:hover {
   background-color: #f0f7f2;
 }
 
-.accordion details summary:focus-visible {
+.faq details summary:focus-visible {
   outline: 2px solid #16834a;
   outline-offset: -3px;
 }
 
-.accordion details .accordion-item-body {
+.faq .faq-item-body {
   padding: 20px 22px;
   border-top: 1px solid #e2ebe5;
   background-color: #fff;
@@ -67,25 +66,25 @@
   line-height: 1.7;
 }
 
-.accordion details .accordion-item-body p {
+.faq .faq-item-body p {
   margin: 0 0 12px;
 }
 
-.accordion details .accordion-item-body p:last-child {
+.faq .faq-item-body p:last-child {
   margin-bottom: 0;
 }
 
 @media (width <= 600px) {
-  .accordion details summary {
+  .faq details summary {
     padding: 17px 48px 17px 16px;
     font-size: 16px;
   }
 
-  .accordion details summary::after {
+  .faq details summary::after {
     right: 20px;
   }
 
-  .accordion details .accordion-item-body {
+  .faq .faq-item-body {
     padding: 16px;
   }
 }
