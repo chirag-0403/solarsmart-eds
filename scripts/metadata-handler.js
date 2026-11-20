@@ -21,3 +21,20 @@ export function getSectionMetadata(section) {
     ctaId: section.dataset.ctaId || '',
   };
 }
+
+
+export function initializeDigitalData() {
+  window.digitalData = window.digitalData || {};
+
+  window.digitalData.page = getPageMetadata();
+
+  window.digitalData.sections = [
+    ...document.querySelectorAll('main > .section'),
+  ].map((section, index) => ({
+    sectionIndex: index + 1,
+    sectionClasses: section.className,
+    ...getSectionMetadata(section),
+  }));
+
+  return window.digitalData;
+}
