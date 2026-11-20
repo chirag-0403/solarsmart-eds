@@ -16,7 +16,9 @@ export default async function decorate(block) {
       return;
     }
 
-    // Create search and category filter controls.
+    const pageSize = 3;
+    let currentPage = 1;
+
     const controls = document.createElement('div');
     controls.className = 'blog-list-controls';
 
@@ -54,6 +56,9 @@ export default async function decorate(block) {
     const list = document.createElement('div');
     list.className = 'blog-list-grid';
 
+    const pagination = document.createElement('div');
+    pagination.className = 'blog-list-pagination';
+
     const renderArticles = () => {
       const searchTerm = search.value.trim().toLowerCase();
       const selectedCategory = categoryFilter.value;
@@ -71,7 +76,17 @@ export default async function decorate(block) {
         return matchesSearch && matchesCategory;
       });
 
+      const totalPages = Math.ceil(filteredArticles.length / pageSize);
+      currentPage = Math.min(currentPage, Math.max(totalPages, 1));
+
+      const startIndex = (currentPage - 1) * pageSize;
+      const visibleArticles = filteredArticles.slice(
+        startIndex,
+        startIndex + pageSize,
+      );
+
       list.replaceChildren();
+      pagination.replaceChildren();
 
       results.textContent = `${filteredArticles.length} article(s) found`;
 
@@ -80,7 +95,7 @@ export default async function decorate(block) {
         return;
       }
 
-      filteredArticles.forEach((article) => {
+      visibleArticles.forEach((article) => {
         const card = document.createElement('article');
         card.className = 'blog-list-card';
 
@@ -125,12 +140,44 @@ export default async function decorate(block) {
         card.append(content);
         list.append(card);
       });
+
+      if (totalPages > 1) {
+        const previousButton = document.createElement('button');
+        previousButton.type = 'button';
+        previousButton.textContent = 'Previous';
+        previousButton.disabled = currentPage === 1;
+        previousButton.addEventListener('click', () => {
+          currentPage -= 1;
+          renderArticles();
+        });
+
+        const pageInfo = document.createElement('span');
+        pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+
+        const nextButton = document.createElement('button');
+        nextButton.type = 'button';
+        nextButton.textContent = 'Next';
+        nextButton.disabled = currentPage === totalPages;
+        nextButton.addEventListener('click', () => {
+          currentPage += 1;
+          renderArticles();
+        });
+
+        pagination.append(previousButton, pageInfo, nextButton);
+      }
     };
 
-    search.addEventListener('input', renderArticles);
-    categoryFilter.addEventListener('change', renderArticles);
+    search.addEventListener('input', () => {
+      currentPage = 1;
+      renderArticles();
+    });
 
-    block.replaceChildren(controls, results, list);
+    categoryFilter.addEventListener('change', () => {
+      currentPage = 1;
+      renderArticles();
+    });
+
+    block.replaceChildren(controls, results, list, pagination);
     renderArticles();
   } catch (error) {
     block.innerHTML = '<p>Unable to load articles. Please try again later.</p>';
