@@ -99,14 +99,6 @@ export default async function decorate(block) {
         const card = document.createElement('article');
         card.className = 'blog-list-card';
 
-        if (article.image) {
-          const image = document.createElement('img');
-          image.src = article.image;
-          image.alt = article.title || 'Blog article';
-          image.loading = 'lazy';
-          card.append(image);
-        }
-
         const content = document.createElement('div');
         content.className = 'blog-list-content';
 
