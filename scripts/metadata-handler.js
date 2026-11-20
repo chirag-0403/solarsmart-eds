@@ -2,7 +2,7 @@ import { getMetadata } from './aem.js';
 
 export function getPageMetadata() {
   return {
-    title: getMetadata('title'),
+    title: getMetadata('og:title'),
     description: getMetadata('description'),
     author: getMetadata('author'),
     businessUnit: getMetadata('business-unit'),
