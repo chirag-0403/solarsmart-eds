@@ -70,6 +70,6 @@ export default async function decorate(block) {
   } catch (error) {
     block.innerHTML = '<p>Unable to load articles. Please try again later.</p>';
     // eslint-disable-next-line no-console
-    console.error('Blog list error:', error);
+    console.error('Error loading blog articles:', error);
   }
 }
